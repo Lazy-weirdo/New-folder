@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyn58pkrgamah"]
+
+[ext_resource type="PackedScene" uid="uid://gfv1kmq1s7w8" path="res://Game/Enemies/Enemy.tscn" id="1_6ga0v"]
+[ext_resource type="Script" uid="uid://bkm8sk872qah5" path="res://Game/Enemies/slime.gd" id="2_jdnym"]
+[ext_resource type="Texture2D" uid="uid://cvc6qbhmkh1df" path="res://Assets/Sprites/Enemies/blue slime-Sheet.png" id="3_6objs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03tcb"]
+atlas = ExtResource("3_6objs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbujg"]
+atlas = ExtResource("3_6objs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq6mq"]
+atlas = ExtResource("3_6objs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub7qn"]
+atlas = ExtResource("3_6objs")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5eli"]
+atlas = ExtResource("3_6objs")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgx56"]
+atlas = ExtResource("3_6objs")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdnym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03tcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbujg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq6mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub7qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5eli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgx56")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03tcb"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6objs"]
+size = Vector2(14, 7)
+
+[node name="Slime" instance=ExtResource("1_6ga0v")]
+script = ExtResource("2_jdnym")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_jdnym")
+autoplay = "walk"
+frame = 1
+frame_progress = 0.46121
+
+[node name="HitBox" parent="." index="1"]
+shape = SubResource("CircleShape2D_03tcb")
+
+[node name="CollisionShape2D" parent="Damage" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_6objs")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://nqx4hwyywk3k"]
+
+[ext_resource type="Texture2D" uid="uid://7sgxjl3qtfoj" path="res://Assets/Backgrounds/items/spikes.png" id="1_4hdo0"]
+[ext_resource type="Script" uid="uid://bfq04pbcg5qs4" path="res://Game/Enemies/Traps/spikes.gd" id="1_4sw0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sw0i"]
+size = Vector2(16, 5)
+
+[node name="Spikes" type="Area2D"]
+script = ExtResource("1_4sw0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_4sw0i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4hdo0")
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

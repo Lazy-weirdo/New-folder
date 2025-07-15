@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cg0kbdpdg2y38"]
+
+[ext_resource type="PackedScene" uid="uid://gfv1kmq1s7w8" path="res://Game/Enemies/Enemy.tscn" id="1_pwb6k"]
+[ext_resource type="Script" uid="uid://cseda6jibqnud" path="res://Game/Enemies/bat.gd" id="2_b65ut"]
+[ext_resource type="Texture2D" uid="uid://c4oo4dp4h7ooe" path="res://Assets/Sprites/Enemies/bat-Sheet.png" id="2_vs4lm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b65ut"]
+atlas = ExtResource("2_vs4lm")
+region = Rect2(0, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl0cl"]
+atlas = ExtResource("2_vs4lm")
+region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gi8u"]
+atlas = ExtResource("2_vs4lm")
+region = Rect2(36, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfvl7"]
+atlas = ExtResource("2_vs4lm")
+region = Rect2(54, 0, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwb6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b65ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl0cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gi8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfvl7")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vs4lm"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs4lm"]
+size = Vector2(15, 4)
+
+[node name="bat" instance=ExtResource("1_pwb6k")]
+script = ExtResource("2_b65ut")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pwb6k")
+animation = &"fly"
+frame_progress = 0.0308683
+
+[node name="HitBox" parent="." index="1"]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_vs4lm")
+
+[node name="CollisionShape2D" parent="Damage" index="0"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_vs4lm")

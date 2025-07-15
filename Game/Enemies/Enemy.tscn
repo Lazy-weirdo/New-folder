@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://gfv1kmq1s7w8"]
+
+[ext_resource type="Script" uid="uid://d1wtubn24x4hc" path="res://Game/Enemies/enemy.gd" id="1_rjhkm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjhkm"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_rjhkm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rjhkm")
+animation = &"walk"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+
+[node name="Damage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+debug_color = Color(0.702495, 0.232887, 0.421027, 0.42)
+
+[connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]

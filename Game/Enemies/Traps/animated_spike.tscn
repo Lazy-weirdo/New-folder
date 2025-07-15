@@ -1,0 +1,171 @@
+[gd_scene load_steps=19 format=3 uid="uid://dkgwgre844wtr"]
+
+[ext_resource type="Script" uid="uid://feha36t4mtuq" path="res://Game/Enemies/Traps/animated_spike.gd" id="1_8s3o1"]
+[ext_resource type="Texture2D" uid="uid://dsonfv5nvrlf4" path="res://Assets/Sprites/Enemies/spike hidden.png" id="1_j566j"]
+[ext_resource type="Texture2D" uid="uid://bter2ddtrjvgd" path="res://Assets/Sprites/Enemies/animated spike.png" id="2_8s3o1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j566j"]
+size = Vector2(16, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4viyi"]
+atlas = ExtResource("1_j566j")
+region = Rect2(0, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qesjf"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(0, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am32g"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(19, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7uoy"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(38, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjvg3"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(57, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j566j"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(38, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s3o1"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(19, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqxia"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(0, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl4k5"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(0, 0, 19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noqvb"]
+atlas = ExtResource("2_8s3o1")
+region = Rect2(0, 0, 19, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4viyi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4viyi")
+}],
+"loop": true,
+"name": &"hidden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qesjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am32g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7uoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjvg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j566j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s3o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqxia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl4k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noqvb")
+}],
+"loop": true,
+"name": &"visible",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_am32g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qesjf"]
+resource_name = "appear"
+length = 2.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"hidden", 1.0, true],
+"method": &"play"
+}, {
+"args": [&"visible", 1.0, true],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7uoy"]
+_data = {
+&"RESET": SubResource("Animation_am32g"),
+&"appear": SubResource("Animation_qesjf")
+}
+
+[node name="AnimatedSpike" type="Area2D"]
+script = ExtResource("1_8s3o1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_j566j")
+
+[node name="Spikes" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4viyi")
+animation = &"visible"
+frame = 8
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t7uoy")
+}
+autoplay = "appear"
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://i28yxl0w52y5"]
+
+[ext_resource type="Script" uid="uid://c55avvk1ep3g" path="res://Game/GUI/hp.gd" id="1_6031f"]
+[ext_resource type="Texture2D" uid="uid://b21qqt4ai8aej" path="res://Assets/GUI/hp.png" id="1_san1c"]
+[ext_resource type="Texture2D" uid="uid://jbjtgyxnd8yg" path="res://Assets/GUI/hp empty.png" id="3_abqir"]
+
+[node name="Hp" type="TextureRect"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_san1c")
+script = ExtResource("1_6031f")
+full_texture = ExtResource("1_san1c")
+empty_texture = ExtResource("3_abqir")

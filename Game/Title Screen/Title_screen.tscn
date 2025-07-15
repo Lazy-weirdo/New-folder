@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cctjlvfnq3iv7"]
+
+[ext_resource type="Script" uid="uid://ba5ei2fpxsxy" path="res://Game/Title Screen/title_screen.gd" id="1_j5vxd"]
+[ext_resource type="FontFile" uid="uid://dsi2vx4tfa4y8" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="2_j3iy3"]
+[ext_resource type="Texture2D" uid="uid://ctggbhlnf5sn8" path="res://Assets/Backgrounds/title_bg.png" id="2_j5vxd"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5vxd")
+metadata/_edit_lock_ = true
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = 2405.0
+offset_bottom = 1428.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.212, 0.212)
+texture = ExtResource("2_j5vxd")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 188.0
+offset_top = 33.0
+offset_right = 302.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_j3iy3")
+text = "Start"
+flat = true
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_j3iy3")
+text = "Options"
+flat = true
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_j3iy3")
+text = "Quit"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
